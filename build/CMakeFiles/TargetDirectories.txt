@@ -1,0 +1,3 @@
+C:/Users/kyley/OneDrive/Desktop/AKA-GOAT/build/CMakeFiles/AKA_GOAT_App.dir
+C:/Users/kyley/OneDrive/Desktop/AKA-GOAT/build/CMakeFiles/edit_cache.dir
+C:/Users/kyley/OneDrive/Desktop/AKA-GOAT/build/CMakeFiles/rebuild_cache.dir
