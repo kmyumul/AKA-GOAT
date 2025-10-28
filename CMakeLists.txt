@@ -35,3 +35,9 @@ if(MSVC)
         mswsock
     )
 endif()
+
+
+find_package(cpr CONFIG REQUIRED)
+find_package(nlohmann_json CONFIG REQUIRED)
+
+target_link_libraries(AKA_GOAT_App PRIVATE cpr::cpr nlohmann_json::nlohmann_json)

@@ -1,4 +1,10 @@
 #include "crow.h"
+#include <cpr/cpr.h>
+#include <nlohmann/json.hpp>
+#include <string>
+#include <vector>
+#include <functional>
+
 
 int main() {
     crow::SimpleApp app;
