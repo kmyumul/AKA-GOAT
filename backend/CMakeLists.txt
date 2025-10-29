@@ -9,13 +9,16 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 # Include Crow's header files
-include_directories(${PROJECT_SOURCE_DIR}/crow/include)
+include_directories(${PROJECT_SOURCE_DIR}/extern/crow/include)
 
 # Include ASIO's header files
-include_directories(${PROJECT_SOURCE_DIR}/asio/asio/include)
+include_directories(${PROJECT_SOURCE_DIR}/extern/asio/asio/include)
+
+# Include JSON header files
+include_directories(${PROJECT_SOURCE_DIR}/extern/json/include)
 
 # Add an executable target
-add_executable(AKA_GOAT_App main.cpp)
+add_executable(AKA_GOAT_App src/main.cpp)
 
 # Link required libraries
 if(UNIX OR MINGW)
@@ -37,7 +40,6 @@ if(MSVC)
 endif()
 
 
-find_package(cpr CONFIG REQUIRED)
-find_package(nlohmann_json CONFIG REQUIRED)
+add_subdirectory(extern/cpr)
 
-target_link_libraries(AKA_GOAT_App PRIVATE cpr::cpr nlohmann_json::nlohmann_json)
+target_link_libraries(AKA_GOAT_App cpr::cpr)
