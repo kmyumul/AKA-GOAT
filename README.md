@@ -1,33 +1,83 @@
 # AKA-GOAT
 
-# Build Instructions
+Build Instructions
 
-1. Install MSYS2 https://www.msys2.org/wiki/MSYS2-installation/
+Follow these steps to build the AKA-GOAT App on Windows using MSYS2.
 
-ensure that you have both gcc and cmake
+1️⃣ Install MSYS2
 
-2. Clone the repo
+Download and install MSYS2: https://www.msys2.org/wiki/MSYS2-installation/
 
-3. Pull all submodules - git submodule update --init --recursive
+Ensure the following tools are installed and available in your MSYS2 MinGW64 shell:
 
-4. install dependencies
+pacman -Syu          # Update the package database and core system packages
+pacman -S mingw-w64-x86_64-gcc mingw-w64-x86_64-cmake
 
-pacman -Syu
+2️⃣ Clone the repository
+git clone <repo-url>
+cd AKA-GOAT
+
+3️⃣ Pull all submodules
+git submodule update --init --recursive
+
+
+This ensures Crow, ASIO, CPR, and other submodules are downloaded.
+
+4️⃣ Install system dependencies
+
+Use MSYS2 MinGW64 shell:
+
+pacman -Syu   # Update packages
 pacman -S mingw-w64-x86_64-curl mingw-w64-x86_64-openssl
 
-5. source a venv
 
-run the following commands
+⚠️ This ensures CPR can link against system libcurl, avoiding issues with libpsl/meson.
+
+5️⃣ Set up Python virtual environment (optional, for build tools)
 python -m venv venv
-source venv/bin/activate
+source venv/bin/activate   # On Windows PowerShell: venv\Scripts\activate
 python -m pip install -r requirements.txt
 
-6. Build the project
 
-cd backend
-mkdir build
+The requirements.txt should include build tools like:
+
+meson
+ninja
+
+
+These are only needed if you build CPR/libcurl from source with Meson.
+
+6️⃣ Build the project
+
+From the backend directory:
+
+mkdir -p build
 cd build
-cmake .. -DCPR_USE_SYSTEM_CURL=OFF
+cmake .. -DCPR_USE_SYSTEM_CURL=OFF   # Use OFF if you want CPR to build its own libcurl
 cmake --build .
 
-for any changes, only call "cmake --build ."
+
+On first build, this will compile all dependencies and your executable.
+
+The resulting executable will be located in:
+
+backend/build/Release/AKA_GOAT_App.exe  # MSVC
+backend/build/AKA_GOAT_App.exe          # MinGW
+
+7️⃣ Rebuilding after changes
+
+Once the build folder is configured:
+
+cd backend/build
+cmake --build .
+
+
+You do not need to rerun cmake .. unless you change CMake options or add new source files.
+
+8️⃣ Run the App
+./AKA_GOAT_App.exe
+
+
+Open a browser and visit:
+
+http://localhost:18080/
