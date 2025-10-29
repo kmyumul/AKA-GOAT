@@ -1,3 +1,0 @@
-C:/Users/hamid/Documents/dsa/AKA-GOAT/build/CMakeFiles/AKA_GOAT_App.dir
-C:/Users/hamid/Documents/dsa/AKA-GOAT/build/CMakeFiles/edit_cache.dir
-C:/Users/hamid/Documents/dsa/AKA-GOAT/build/CMakeFiles/rebuild_cache.dir
