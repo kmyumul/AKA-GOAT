@@ -4,9 +4,6 @@
 [submodule "backend/extern/crow"]
 	path = backend/extern/crow
 	url = https://github.com/CrowCpp/Crow.git
-[submodule "backend/extern/cpr"]
-	path = backend/extern/cpr
-	url = https://github.com/libcpr/cpr.git
 [submodule "backend/extern/json"]
 	path = backend/extern/json
 	url = https://github.com/nlohmann/json.git

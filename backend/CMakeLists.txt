@@ -26,22 +26,3 @@ add_executable(AKA_GOAT_App
                 src/soccerPlayer.cpp
                 src/tim.cpp)
 
-# Link required libraries
-# if(UNIX OR MINGW)
-#     target_link_libraries(AKA_GOAT_App 
-#         pthread 
-#         ws2_32      # Winsock 2
-#         wsock32     # Winsock 1
-#         mswsock     # Microsoft Winsock Extensions (for AcceptEx, etc.)
-#     )
-# endif()
-
-# # For Windows with MSVC
-# if(MSVC)
-#     target_link_libraries(AKA_GOAT_App 
-#         ws2_32 
-#         wsock32 
-#         mswsock
-#     )
-# endif()
-

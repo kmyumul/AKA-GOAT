@@ -7,8 +7,6 @@
 #define ENDL '\n'
 
 
-
-
 int main()
 {
     std::vector<SoccerPlayer> list = generateRandomPlayers(1000000);
