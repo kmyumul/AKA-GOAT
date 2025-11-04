@@ -50,3 +50,5 @@ bool compare_nationalTeamGames(SoccerPlayer& first, SoccerPlayer& second, op ope
 bool compare_totalGamesPlayed(SoccerPlayer& first, SoccerPlayer& second, op operation);
 
 bool compare_ratioGoalGame(SoccerPlayer& first, SoccerPlayer& second, op operation);
+
+bool compare_dominanceScore(SoccerPlayer& first, SoccerPlayer& second, op operation);

@@ -32,13 +32,15 @@ std::vector<SoccerPlayer> generateRandomPlayers(int n)
         p.nationalTeamGames = 1 + rand() % 40;
         p.totalGamesPlayed = 10 + rand() % 100;
         p.ratioGoalGame = (p.totalGamesPlayed > 0) ? static_cast<float>(p.totalGoals) / p.totalGamesPlayed : 0.0f;
-        p.dominanceScore = p.totalGoals * 0.6f + p.totalAssists * 0.3f + p.totalCleanSheets * 0.1f;
+        p.dominanceScore = (p.totalGoals * 0.45f) + (p.totalAssists * 0.35f) + (p.totalCleanSheets * 0.05f) + (p.totalGamesPlayed/ 10.0f * 0.15f);
 
         players.push_back(p);
     }
 
     return players; // unsorted by default
 }
+
+
 
 bool compare_totalGoals(SoccerPlayer& first, SoccerPlayer& second, op operation)
 {
@@ -302,6 +304,33 @@ bool compare_ratioGoalGame(SoccerPlayer& first, SoccerPlayer& second, op operati
     // greater than or equal to
     case GREATER_THAN_OR_EQUAL:
         return first.ratioGoalGame >= second.ratioGoalGame;
+        break;
+    default:
+        break;
+    }
+
+    return false;
+}
+
+bool compare_dominanceScore(SoccerPlayer& first, SoccerPlayer& second, op operation)
+{
+    switch (operation)
+    {
+    // less than
+    case LESS_THAN:
+        return first.dominanceScore < second.dominanceScore;
+        break;
+    // greater than
+    case GREATER_THAN:
+        return first.dominanceScore > second.dominanceScore;
+        break;
+    // less than or equal to
+    case LESS_THAN_OR_EQUAL:
+        return first.dominanceScore <= second.dominanceScore;
+        break;
+    // greater than or equal to
+    case GREATER_THAN_OR_EQUAL:
+        return first.dominanceScore >= second.dominanceScore;
         break;
     default:
         break;

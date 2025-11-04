@@ -24,5 +24,6 @@ include_directories(${PROJECT_SOURCE_DIR}/include)
 add_executable(AKA_GOAT_App 
                 src/main.cpp
                 src/soccerPlayer.cpp
-                src/tim.cpp)
+                src/tim.cpp
+                src/quick.cpp)
 
