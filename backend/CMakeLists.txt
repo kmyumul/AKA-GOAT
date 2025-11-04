@@ -17,8 +17,13 @@ include_directories(${PROJECT_SOURCE_DIR}/extern/asio/asio/include)
 # Include JSON header files
 include_directories(${PROJECT_SOURCE_DIR}/extern/json/include)
 
+# Include CSV header files
+# include_directories(${PROJECT_SOURCE_DIR}/extern/csv_parser/include)
+
 # Include directory
 include_directories(${PROJECT_SOURCE_DIR}/include)
+
+add_subdirectory(${PROJECT_SOURCE_DIR}/extern/csv_parser)
 
 # Add an executable target
 add_executable(AKA_GOAT_App 
@@ -26,4 +31,6 @@ add_executable(AKA_GOAT_App
                 src/soccerPlayer.cpp
                 src/tim.cpp
                 src/quick.cpp)
+
+target_link_libraries(AKA_GOAT_App csv)
 

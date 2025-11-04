@@ -1,3 +1,0 @@
-# Build dependencies for CPR on Windows
-meson
-ninja

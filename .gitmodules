@@ -7,3 +7,9 @@
 [submodule "backend/extern/json"]
 	path = backend/extern/json
 	url = https://github.com/nlohmann/json.git
+[submodule "backend/extern/datasets"]
+	path = backend/extern/datasets
+	url = https://github.com/salimt/football-datasets
+[submodule "backend/extern/csv_parser"]
+	path = backend/extern/csv_parser
+	url = https://github.com/vincentlaucsb/csv-parser

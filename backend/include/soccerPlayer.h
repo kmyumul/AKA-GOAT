@@ -12,10 +12,10 @@ enum op
 
 struct SoccerPlayer
 {
-    std::string playerId;
-    std::string name;
-    std::string nationality;
-    std::string position;
+    std::string playerId = "";
+    std::string name = "";
+    std::string nationality = "";
+    std::string position = "";
     int totalGoals = 0;
     int totalAssists = 0;
     int totalMinPlayed = 0;
