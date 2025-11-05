@@ -29,6 +29,8 @@ Use MSYS2 MinGW64 shell:
 
 pacman -Syu   # Update packages
 pacman -S mingw-w64-x86_64-curl mingw-w64-x86_64-openssl
+pacman -S mingw-w64-x86_64-opencv
+pacman -S mingw-w64-x86_64-toolchain mingw-w64-x86_64-zlib
 
 
 ⚠️ This ensures CPR can link against system libcurl, avoiding issues with libpsl/meson.
@@ -41,8 +43,8 @@ python -m pip install -r requirements.txt
 
 The requirements.txt should include build tools like:
 
-meson
 ninja
+numpy
 
 
 These are only needed if you build CPR/libcurl from source with Meson.

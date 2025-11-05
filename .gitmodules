@@ -13,3 +13,6 @@
 [submodule "backend/extern/csv_parser"]
 	path = backend/extern/csv_parser
 	url = https://github.com/vincentlaucsb/csv-parser
+[submodule "backend/extern/terminal"]
+	path = backend/extern/terminal
+	url = https://github.com/JustWhit3/osmanip

@@ -16,6 +16,7 @@ struct SoccerPlayer
     std::string name = "";
     std::string nationality = "";
     std::string position = "";
+    std::string image = "";
     int totalGoals = 0;
     int totalAssists = 0;
     int totalMinPlayed = 0;
