@@ -265,59 +265,84 @@ void run()
 
     // Display Sorting options
 
-    int selection = print_options();
-
-    // Display Sorting Time
-
-    run_sorting(tim_sorted_list, quick_sorted_list, merge_sorted_list, selection);
-
-    // Display stats
-
-    std::string string_selection = get_string_selection(selection);
-
-    std::cout << ENDL;
-
-    std::cout << set_cursor_position(1, 80);
-    std::cout << osm::feat( osm::col, "yellow" ) << "TOP 10" << osm::feat( osm::rst, "color" ) << ENDL << ENDL << ENDL;
-
-    for (int i = 0; i < 10; i++)
+    while (1)
     {
-        SoccerPlayer player = tim_sorted_list.at(tim_sorted_list.size() - (i+1));
-        std::string padded_string;
-        int spaces = (30 - player.name.length());
-        if (spaces > 0)
-        {
-            padded_string = player.name + std::string(spaces, ' ');
-        }
+        int selection = print_options();
+
+        // Display Sorting Time
+
+        run_sorting(tim_sorted_list, quick_sorted_list, merge_sorted_list, selection);
+
+        // Display stats
+
+        std::string string_selection = get_string_selection(selection);
+
+        std::cout << ENDL;
+
         std::cout << set_cursor_position(1, 80);
-        std::string num_string = std::to_string(i + 1) + ". ";
-        std::cout << std::left << std::setw(4) << num_string << osm::feat( osm::col, "yellow" ) << padded_string << osm::feat( osm::rst, "color" ) << ": " << string_selection << ": " << osm::feat( osm::col, "green" ) << get_attribute(player, selection) << osm::feat( osm::rst, "color" ) << ENDL << ENDL;
+        std::cout << osm::feat( osm::col, "yellow" ) << "TOP 10" << osm::feat( osm::rst, "color" ) << ENDL << ENDL << ENDL;
+
+        for (int i = 0; i < 10; i++)
+        {
+            SoccerPlayer player = tim_sorted_list.at(tim_sorted_list.size() - (i+1));
+            std::string padded_string;
+            int spaces = (30 - player.name.length());
+            if (spaces > 0)
+            {
+                padded_string = player.name + std::string(spaces, ' ');
+            }
+            std::cout << set_cursor_position(1, 80);
+            std::string num_string = std::to_string(i + 1) + ". ";
+            std::cout << std::left << std::setw(4) << num_string << osm::feat( osm::col, "yellow" ) << padded_string << osm::feat( osm::rst, "color" ) << ": " << string_selection << ": " << osm::feat( osm::col, "green" ) << get_attribute(player, selection) << osm::feat( osm::rst, "color" ) << ENDL << ENDL;
+        }
+
+        // Display GOAT
+
+        std::cout << set_cursor_position(13, 0);
+        std::cout << osm::feat( osm::col, "green" ) << "GOAT: " << osm::feat( osm::rst, "color" );
+
+        SoccerPlayer player = tim_sorted_list.at(tim_sorted_list.size() - 1);
+
+        std::cout << osm::feat( osm::col, "yellow" ) << player.name << osm::feat( osm::rst, "color" ) << ": " << string_selection << ": " << osm::feat( osm::col, "green" ) << get_attribute(player, selection) << osm::feat( osm::rst, "color" );
+        
+        cv::Mat img = get_image_data(player.image, TIMEOUT);
+
+        std::cout << set_cursor_position(11, 0);
+
+        print_image_data(img);
+
+        std::cout << set_cursor_position(0, 0);
+
+        std::cout << ENDL;
+        int restart = -1;
+
+        while (1)
+        {
+            std::cout << "Would you like to run again? 0 = Y, 1 = N? ";
+            if(!(std::cin >> restart))
+            {
+                std::cin.clear();
+                std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+                std::cout << ENDL << osm::feat( osm::col, "red" ) << "Error: please select a value in the range (0 - 1)" << osm::feat( osm::rst, "color" ) << ENDL << ENDL;
+                continue;
+
+            }
+
+            if (restart < 0 || restart > 1)
+            {
+                std::cout << ENDL << osm::feat( osm::col, "red" ) << "Error: please select a value in the range (0 - 1)" << osm::feat( osm::rst, "color" ) << ENDL << ENDL;
+                selection = 0;
+                continue;
+            }
+            break;
+        }
+
+        if (restart == 1)
+        {
+            break;
+        }
+
     }
-
-    // Display GOAT
-
-    std::cout << set_cursor_position(13, 0);
-    std::cout << osm::feat( osm::col, "green" ) << "GOAT: " << osm::feat( osm::rst, "color" );
-
-    SoccerPlayer player = tim_sorted_list.at(tim_sorted_list.size() - 1);
-
-    std::cout << osm::feat( osm::col, "yellow" ) << player.name << osm::feat( osm::rst, "color" ) << ": " << string_selection << ": " << osm::feat( osm::col, "green" ) << get_attribute(player, selection) << osm::feat( osm::rst, "color" );
-    
-    cv::Mat img = get_image_data(player.image, TIMEOUT);
-
-    std::cout << set_cursor_position(11, 0);
-
-    print_image_data(img);
-
-    std::cout << set_cursor_position(0, 0);
-
-    // while(1);
-
-    // Display GOAT on the left, with name, stats, and a picture
-
-    // Display other 9 on the right
-
-    // Ask to continue
 
 
 }
