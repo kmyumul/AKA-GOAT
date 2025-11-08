@@ -109,12 +109,16 @@ void run_sorting(std::vector<SoccerPlayer> &tim_vec, std::vector<SoccerPlayer> &
     timSort(tim_vec, get_compare_function(selection));
     auto tim_end = std::chrono::high_resolution_clock::now();
 
-    // Quick sort
-    // std::cout << "Running " << osm::feat( osm::col, "green" ) << "Quick Sort" << osm::feat( osm::rst, "color" ) << ENDL;
+    auto quick_start = std::chrono::high_resolution_clock::now();
+    if (selection == 1)
+    {
+        //Quick sort
+        std::cout << "Running " << osm::feat( osm::col, "green" ) << "Quick Sort" << osm::feat( osm::rst, "color" ) << ENDL;
 
-    // auto quick_start = std::chrono::high_resolution_clock::now();
-    // quickSort(quick_vec, 0, quick_vec.size() - 1, get_compare_function(selection), LESS_THAN);
-    // auto quick_end = std::chrono::high_resolution_clock::now();
+        quickSort(quick_vec, 0, quick_vec.size() - 1, get_compare_function(selection), LESS_THAN);
+    }
+    auto quick_end = std::chrono::high_resolution_clock::now();
+
 
     // Merge sort
     std::cout << "Running " << osm::feat( osm::col, "green" ) << "Merge Sort" << osm::feat( osm::rst, "color" ) << ENDL << ENDL;
@@ -124,11 +128,14 @@ void run_sorting(std::vector<SoccerPlayer> &tim_vec, std::vector<SoccerPlayer> &
     auto merge_end = std::chrono::high_resolution_clock::now();
 
     std::chrono::duration<double> tim_elapsed = tim_end - tim_start;
-    // std::chrono::duration<double> quick_elapsed = quick_end - quick_start;
+    std::chrono::duration<double> quick_elapsed = quick_end - quick_start;
     std::chrono::duration<double> merge_elapsed = merge_end - merge_start;
 
     std::cout << "Elapsed time Tim Sort: " << osm::feat( osm::col, "green" ) << tim_elapsed.count() << osm::feat( osm::rst, "color" ) << " seconds\n";
-    // std::cout << "Elapsed time Quick Sort: " << osm::feat( osm::col, "green" ) << quick_elapsed.count() << osm::feat( osm::rst, "color" ) << " seconds\n";
+    if (selection == 1)
+    {
+        std::cout << "Elapsed time Quick Sort: " << osm::feat( osm::col, "green" ) << quick_elapsed.count() << osm::feat( osm::rst, "color" ) << " seconds\n";
+    }
     std::cout << "Elapsed time Merge Sort: " << osm::feat( osm::col, "green" ) << merge_elapsed.count() << osm::feat( osm::rst, "color" ) << " seconds\n";
 
     std::cout << osm::feat( osm::col, "yellow" ) << BREAK << osm::feat( osm::rst, "color" ) << ENDL;
@@ -247,15 +254,10 @@ void run()
     
     std::cout << "Creating Copies for Sorting" << ENDL;
 
-    // create a copy of the vector
+    // create a copy of the vectors
     std::vector<SoccerPlayer> tim_sorted_list = players_vector;
     std::vector<SoccerPlayer> merge_sorted_list = players_vector;
     std::vector<SoccerPlayer> quick_sorted_list = players_vector;
-
-    // Load image
-    // cv::Mat img = get_image_data("https://img.a.transfermarkt.technology/portrait/header/default.jpg", TIMEOUT);
-
-    // print_image_data(img);
 
     // Display Welcome Screen
 
